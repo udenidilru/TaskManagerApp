@@ -1,1 +1,8 @@
-<p>task-list works!</p>
+<table>
+    <tr *ngFor="let task of tasks">
+      <td>{{ task.Title }}</td>
+      <td>{{ task.Description }}</td>
+      <!-- <td>{{ task.DueDate | date:'short' }}</td> -->
+      <td><button (click)="deleteTask(task.Id)">Delete</button></td>
+    </tr>
+  </table>

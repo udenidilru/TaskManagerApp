@@ -8,7 +8,10 @@ namespace TaskManagerApp.Controllers
     [ApiController]
     public class TasksController: ControllerBase
     {
-        private readonly List<Work> tasks = new List<Work>();
+        private readonly List<Work> tasks = new List<Work> {
+        new Work { Id = 1, Title = "Task 1", Description = "Description for Task 1", DueDate = DateTime.Now.AddDays(1) },
+        new Work { Id = 2, Title = "Task 2", Description = "Description for Task 2", DueDate = DateTime.Now.AddDays(2) }
+        };
 
         [HttpGet] 
         public ActionResult<IEnumerable<Work>> GetTasks()
