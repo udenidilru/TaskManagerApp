@@ -1,0 +1,43 @@
+.add-button {
+    background-color: #4caf50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .task-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .task-table th, .task-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .task-table th {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .btn {
+    cursor: pointer;
+    padding: 10px;
+    border: none;
+    color: white;
+  }
+  
+  .btn-update {
+    background-color: #2196F3;
+  }
+  
+  .btn-delete {
+    background-color: #f44336;
+  }

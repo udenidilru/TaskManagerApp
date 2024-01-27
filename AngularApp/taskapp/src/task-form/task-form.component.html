@@ -1,17 +1,33 @@
 <div>
-    <router-outlet>
+<button (click)="back()" >Back to List</button>
+<div class="edit-header">
+    <h2>Add Task</h2>
+</div>
 <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
-    <label>Title:</label>
-    <input type="text" formControlName="title" />
-  
-    <label>Description:</label>
-    <textarea formControlName="description"></textarea>
-  
-    <label>Due Date:</label>
-    <input type="date" formControlName="dueDate" />
-  
-    <button type="submit">Submit</button>
-  </form>
-
-  </router-outlet>
+    <div>
+        <label for="title">Title:</label>
+        <input type="text" id="title" formControlName="title">
+        <div *ngIf="taskForm.controls['title'].invalid && taskForm.controls['title'].touched">
+        Title is required.
+        </div>
+    </div>
+    <div>
+        <label for="description">Description:</label>
+        <textarea id="description" formControlName="description"></textarea>
+        <div *ngIf="taskForm.controls['description'].invalid && taskForm.controls['description'].touched">
+        Description is required.
+        </div>
+    </div>
+    <div>
+        <label for="dueDate">Due Date:</label>
+        <input type="date" id="dueDate" formControlName="dueDate">
+        <div *ngIf="taskForm.controls['dueDate'].invalid && taskForm.controls['dueDate'].touched">
+        Due Date is required.
+        </div>
+        <div *ngIf="taskForm.controls['dueDate'].hasError('futureDate') && taskForm.controls['dueDate'].touched">
+        Please select a future date.
+        </div>
+    </div>
+    <button type="submit" [disabled]="taskForm.invalid">Create Task</button>
+    </form>
   </div>

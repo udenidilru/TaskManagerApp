@@ -1,8 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TaskService } from '../task.service';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { TaskService } from '../services/task.service';
 import { Task } from '../model/task.model';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { NotificationService } from '../services/notification.service';
+import { DatePipe } from '@angular/common';
+
+function futureDateValidator(control: AbstractControl): { [key: string]: boolean } | null {
+  const selectedDate = new Date(control.value as string);
+  const currentDate = new Date();
+  const currentDateOnly = currentDate.toLocaleDateString('en-US');
+  const selectedDateOnly = selectedDate.toLocaleDateString('en-US');
+
+  if (selectedDateOnly && selectedDateOnly < currentDateOnly) {
+    return { 'futureDate': true };
+  }
+
+  return null;
+}
 
 @Component({
   selector: 'app-task-form',
@@ -12,21 +27,45 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class TaskFormComponent implements OnInit {
   taskForm: FormGroup = new FormGroup({});
 
-  constructor(private fb: FormBuilder, private taskService: TaskService, private router: Router,) { }
+  constructor(private fb: FormBuilder, 
+              private taskService: TaskService, 
+              private router: Router,
+              private notificationService: NotificationService) { }
 
   ngOnInit(): void {
     this.taskForm = this.fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
-      dueDate: ['', Validators.required],
+      dueDate: [null, [Validators.required, futureDateValidator]],
     });
   }
 
   onSubmit(): void {
     if (this.taskForm.valid) {
       const newTask: Task = this.taskForm.value;
-      this.taskService.createTask(newTask).subscribe();
-      this.router.navigate(['/']);
+      this.taskService.createTask(newTask).subscribe(
+        (response) => {
+          this.notificationService.showNotification('Task created successfully.');
+          this.router.navigate(['/']);
+        },
+        (error) => {
+          this.notificationService.showNotification('Can not create task.');
+        }
+      );
+    }
+    else {
+      // Mark form controls as touched to display validation messages
+      this.markFormControlsAsTouched();
     }
   }
+
+  markFormControlsAsTouched(): void {
+    Object.values(this.taskForm.controls).forEach(control => {
+      control.markAsTouched();
+    });
+  }
+  back(): void {
+    this.router.navigate(['/']);
+  }
+  
 }

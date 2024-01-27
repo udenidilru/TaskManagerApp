@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TaskService } from '../task.service';
+import { TaskService } from '../services/task.service';
 import { Task } from '../model/task.model';
 
 @Component({
@@ -35,5 +35,8 @@ export class EditTaskComponent implements OnInit {
     this.taskService.updateTask(this.taskId,this.task).subscribe(() => {
       this.router.navigate(['']);
     });
+  }
+  back(): void {
+    this.router.navigate(['/']);
   }
 }
