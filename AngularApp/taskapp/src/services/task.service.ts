@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Task } from '../model/task.model';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,6 @@ export class TaskService {
   }
 
   getTaskById(id: number): Observable<Task> {
-   // const url = `${this.apiUrl}/${id}`;
     return this.http.get<Task>(`${this.apiUrl}/${id}`);
   }
 
@@ -30,5 +30,18 @@ export class TaskService {
 
   deleteTask(id: number): Observable<Task[]> {
     return this.http.delete<Task[]>(`${this.apiUrl}/${id}`);
+  }
+
+  static futureDateValidator(control: AbstractControl): { [key: string]: boolean } | null {
+    const selectedDate = new Date(control.value as string);
+    const currentDate = new Date();
+    const currentDateOnly = currentDate.toLocaleDateString('en-US');
+    const selectedDateOnly = selectedDate.toLocaleDateString('en-US');
+  
+    if (selectedDateOnly && selectedDateOnly < currentDateOnly) {
+      return { 'futureDate': true };
+    }
+  
+    return null;
   }
 }

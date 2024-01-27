@@ -25,6 +25,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     CommonModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     provideClientHydration(),

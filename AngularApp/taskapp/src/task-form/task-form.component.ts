@@ -4,7 +4,6 @@ import { TaskService } from '../services/task.service';
 import { Task } from '../model/task.model';
 import { Router } from '@angular/router';
 import { NotificationService } from '../services/notification.service';
-import { DatePipe } from '@angular/common';
 
 function futureDateValidator(control: AbstractControl): { [key: string]: boolean } | null {
   const selectedDate = new Date(control.value as string);

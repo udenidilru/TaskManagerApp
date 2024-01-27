@@ -41,3 +41,8 @@
   .btn-delete {
     background-color: #f44336;
   }
+
+  .description-container {
+    max-width: 200px;
+    word-wrap: break-word;
+  }
