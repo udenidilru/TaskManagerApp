@@ -1,5 +1,6 @@
 <div>
-    <router-outlet>
+  <button (click)="navigateToAdd()">New Task</button>
+  <router-outlet>
 <table>
     <thead>
         <tr>
@@ -16,6 +17,7 @@
         <td>{{ task.title }}</td>
         <td>{{ task.description }}</td>
         <td>{{ task.dueDate | date:'short' }}</td>
+        <td><button class="btn btn-primary" (click)="navigateToEdit(task.id)">Update</button></td>
         <td><button (click)="deleteTask(task.id)">Delete</button></td>
         </tr>
       </tbody>

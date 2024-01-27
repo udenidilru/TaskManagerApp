@@ -5,8 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TaskListComponent } from '../task-list/task-list.component';
 import { TaskFormComponent } from '../task-form/task-form.component';
+import { EditTaskComponent } from '../edit-task/edit-task.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 @NgModule({
@@ -14,13 +16,15 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     AppComponent,
     TaskListComponent,
     TaskFormComponent,
+    EditTaskComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
   ],
   providers: [
     provideClientHydration(),
