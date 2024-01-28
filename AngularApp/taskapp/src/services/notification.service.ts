@@ -13,6 +13,6 @@ export class NotificationService {
 
     setTimeout(() => {
       document.body.removeChild(notificationElement);
-    }, 3000); // Remove the notification after 3 seconds
+    }, 3000);
   }
 }

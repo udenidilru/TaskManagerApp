@@ -31,7 +31,6 @@ export class TaskListComponent implements OnInit {
   }
 
   deleteTask(id: number): void {
-    //this.taskService.deleteTask(id).subscribe(updatedTasks => this.tasks = updatedTasks);
     this.taskService.deleteTask(id).subscribe(
       updatedTasks => {
         this.tasks = updatedTasks;

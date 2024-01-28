@@ -53,7 +53,6 @@ export class TaskFormComponent implements OnInit {
       );
     }
     else {
-      // Mark form controls as touched to display validation messages
       this.markFormControlsAsTouched();
     }
   }

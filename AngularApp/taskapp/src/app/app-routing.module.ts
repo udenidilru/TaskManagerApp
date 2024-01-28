@@ -11,8 +11,6 @@ const routes: Routes = [
   { path: 'add-task', component: TaskFormComponent },
   { path: 'edit-task/:id', component: EditTaskComponent },
   { path: 'task-details/:id', component: TaskDetailsComponent },
-  //{ path: '', component: AppComponent },
-  //{ path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
 @NgModule({
