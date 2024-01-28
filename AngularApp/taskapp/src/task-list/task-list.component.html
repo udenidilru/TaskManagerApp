@@ -13,7 +13,7 @@
       <tbody>
         <tr *ngFor="let task of tasks">
         <td>{{ task.id }}</td>
-        <td>{{ task.title }}</td>
+        <td><a [routerLink]="['/task-details', task.id]">{{ task.title }}</a></td>
         <td class="description-container">{{ task.description }}</td>
         <td>{{ task.dueDate | date:'shortDate' }}</td>
         <td><button class="btn btn-update" (click)="navigateToEdit(task.id)">Update</button>

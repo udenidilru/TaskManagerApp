@@ -1,0 +1,6 @@
+<button (click)="back()" class="back-button">Back to List</button>
+<div *ngIf="task" class="task-details-container">
+    <h2>{{ task.title }}</h2>
+    <p>{{ task.description }}</p>
+    <p>Due Date: {{ task.dueDate | date }}</p>
+  </div>

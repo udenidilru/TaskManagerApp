@@ -6245,11 +6245,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Test\\TaskManagerApp\\TestAppApi\\TestAppApi.csproj",
+      "projectUniqueName": "D:\\Test\\TaskManagerAppV2\\TestAppApi\\TestAppApi.csproj",
       "projectName": "TestAppApi",
-      "projectPath": "D:\\Test\\TaskManagerApp\\TestAppApi\\TestAppApi.csproj",
+      "projectPath": "D:\\Test\\TaskManagerAppV2\\TestAppApi\\TestAppApi.csproj",
       "packagesPath": "C:\\Users\\u.dilrukshi\\.nuget\\packages\\",
-      "outputPath": "D:\\Test\\TaskManagerApp\\TestAppApi\\obj\\",
+      "outputPath": "D:\\Test\\TaskManagerAppV2\\TestAppApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

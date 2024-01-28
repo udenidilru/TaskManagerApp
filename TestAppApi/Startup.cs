@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TestAppApi.Repositories;
 
 namespace TestAppApi
 {
@@ -44,6 +45,7 @@ namespace TestAppApi
             });
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<ITaskRepository, TaskRepository>();
 
         }
 

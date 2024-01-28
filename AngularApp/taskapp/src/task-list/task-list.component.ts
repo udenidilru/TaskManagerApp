@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../services/task.service';
 import { Task } from '../model/task.model';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { NotificationService } from '../services/notification.service';
 
 @Component({
   selector: 'app-task-list',
@@ -11,7 +12,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class TaskListComponent implements OnInit {
   tasks: Task[] = [];
   
-  constructor(private taskService: TaskService, private router: Router) { }
+  constructor(private taskService: TaskService, 
+              private router: Router,
+              private notificationService: NotificationService) { }
 
   ngOnInit(): void {
     this.taskService.getTasks().subscribe(
@@ -20,6 +23,7 @@ export class TaskListComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching tasks:', error);
+        this.notificationService.showNotification('Error fetching tasks');
       });
   }
   navigateToAdd(): void {
@@ -27,9 +31,22 @@ export class TaskListComponent implements OnInit {
   }
 
   deleteTask(id: number): void {
-    this.taskService.deleteTask(id).subscribe(updatedTasks => this.tasks = updatedTasks);
+    //this.taskService.deleteTask(id).subscribe(updatedTasks => this.tasks = updatedTasks);
+    this.taskService.deleteTask(id).subscribe(
+      updatedTasks => {
+        this.tasks = updatedTasks;
+        this.notificationService.showNotification('Task deleted successfully.');
+      },
+      error => {
+        console.error(error);
+        this.notificationService.showNotification('Can not delete task.');
+      });
   }
   navigateToEdit(taskId: number): void {
     this.router.navigate(['/edit-task', taskId]);
+  }
+
+  onTaskClick(task: any): void {
+    this.router.navigate(['/task-details', task.id]);
   }
 }

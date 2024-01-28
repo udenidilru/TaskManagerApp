@@ -9,7 +9,7 @@ import { EditTaskComponent } from '../edit-task/edit-task.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { TaskDetailsComponent } from '../task-details/task-details.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +17,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     TaskListComponent,
     TaskFormComponent,
     EditTaskComponent,
+    TaskDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +30,6 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
   ],
   providers: [
     provideClientHydration(),
-   // { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
 })
